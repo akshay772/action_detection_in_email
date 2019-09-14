@@ -1,13 +1,8 @@
-import re
-from os import path, listdir
 import sys
-import json
+import email
+import pandas as pd
 
-# Precompiled patterns
-msg_start_pattern = re.compile("\n\n", re.MULTILINE)
-msg_end_pattern = re.compile("\n+.*\n\d+/\d+/\d+ \d+:\d+ [AP]M", re.MULTILINE)
-
-feeds = []
+from os import path, listdir
 
 def parse_email(pathname, orig=True):
 	if path.isdir(pathname):
@@ -20,10 +15,21 @@ def parse_email(pathname, orig=True):
 				
 	else:
 		print("file is ", pathname)
-		with open(pathname) as TextFile:
-			text = TextFile.read().replace("\r", "")
-			# print(text[:100], type(text))
+		df = pd.read_csv(pathname)
+		text = df.message[12]
+		# print(text)
+		try:
 			try:
+				message = email.message_from_string(text)
+				count = 0
+				for part in message.walk():
+					print("part : %s \n\n\n %s" %(count+1, part))
+			except AttributeError:
+				print("something")
+				# message = text
+		except AttributeError:
+			logging.error( "Failed to parse %s" % pathname )
+			return None
 			
 	return "Success"
 
