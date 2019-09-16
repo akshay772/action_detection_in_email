@@ -7,7 +7,6 @@ import pandas as pd
 from email.parser import Parser
 from os import path, listdir
 
-
 def parse_email( pathname, orig=True ):
     all_mail = { }
     if path.isdir( pathname ):
