@@ -6,7 +6,7 @@ from spacy.lang.en import English
 import sys
 import spacy
 
-filepath = sys.argv[1]
+# filepath = sys.argv[1]
 
 # inputs a single sentence tokenized and pos tagged list
 def get_actionable_item(sent_tokenized_tagged):
@@ -14,7 +14,8 @@ def get_actionable_item(sent_tokenized_tagged):
     # importing list of action words
     list_action_words = ["do", "list", "document", "send", "forward", "fix", "write", "open", "wait",
         "move", "visit", "make", "listen", "come", "spend", "submit", "build", "bring", "ask", "grab",
-        "read", "give", "act", "visit"]
+        "read", "give", "act", "visit", "think", "drop", "call", "schedule"]
+    # EXCEPTIONS LIST HERE IMPORT BELOW
     # maintain a two word phrase that do not indicate action but are combination of verbs
     two_gram_discard_phrases = []
     # maintain a three word phrase that do not indicate action but are combination of verbs
@@ -75,12 +76,12 @@ def load_spacy_sentecizer_pos_tagger():
 # remove stop words from sentences
 # spacy_stopwords = spacy.lang.en.stop_words.STOP_WORDS
 
-def load_data_dict():
+def load_data_dict(filepath, max_no_email):
     # get the count of actionable to nonactionable
     # return only if current body actionable count is present
     # read the ENRON data into dict
     data_filepath = filepath
-    email_dict = parse_email(data_filepath)
+    email_dict = parse_email(data_filepath, max_no_email)
     final = { "actionable":0, "nonactionable":0 }
     # run for each email sample
     for key, email in email_dict.items():
@@ -114,9 +115,10 @@ def load_data_dict():
 
         # print email actionable or non-actionable
         if final["actionable"] >= 1:
-            print("\n\nEmail is actionable : \tPrinting mail no ... %s" % key)
+            print("\n\Email is actionable, with action grabbed as : %s \tPrinting mail no ... %s" % (
+                element["action"], key))
         else:
-            print( "\n\nEmail is non-actionable : \tPrinting mail no ... %s" % key )
+            print( "\nEmail is non-actionable : \tPrinting mail no ... %s" % key )
 
         # # adding one more loop to loop through emails for nesting action to get insights in forwarded mails
         # body_list = []
@@ -130,4 +132,4 @@ def load_data_dict():
         #         body_list.append(value["sub_body"])
 
 
-load_data_dict()
+# load_data_dict()
