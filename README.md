@@ -5,7 +5,9 @@ A heuristics-based linguistic model for detecting actionable items from the emai
  * If mail is found actionable, it grabs the action part of the mail.
 ### How to run the module
 * Download the dataset [here](https://www.kaggle.com/wcukierski/enron-email-dataset). 
-* Simple run the command `python main.py /Path/to/data/file/ number_1 number_2 number_3` 
+* To run to classify a sentence : `python main.py "Sentence to classify"`
+* Simple run to classify emails in ENRON dataset :  `python main.py /Path/to/data/file/ number_1 number_2
+ number_3` 
     * number_1 : Maximum no of chunks to run (to prevent system running out of memory)
     * number_2 : Chunk size to take for processing
     * number_3 : No of email to predict in each chunk
@@ -13,3 +15,4 @@ A heuristics-based linguistic model for detecting actionable items from the emai
 ### Needs for improvement
 * Increase the no of verb action words to increase the rule based classification.
 * Add 2-gram and 3-gram words to boot the accuracy of model.
+* Importing NLTK wordnet model to fetch and add synonyms of transition verbss

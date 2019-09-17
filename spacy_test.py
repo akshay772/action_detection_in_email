@@ -3,7 +3,8 @@ from spacy.lang.en import English
 # from nltk.tag import pos_tag
 # from nltk.tokenize import word_tokenize
 
-import sys
+import unicodedata
+import os
 import spacy
 
 # filepath = sys.argv[1]
@@ -14,7 +15,8 @@ def get_actionable_item(sent_tokenized_tagged):
     # importing list of action words
     list_action_words = ["do", "list", "document", "send", "forward", "fix", "write", "open", "wait",
         "move", "visit", "make", "listen", "come", "spend", "submit", "build", "bring", "ask", "grab",
-        "read", "give", "act", "visit", "think", "drop", "call", "schedule"]
+        "read", "give", "act", "visit", "think", "drop", "call", "schedule", "accept", "reply", "respond",
+        "create", "open", "close", "show", ]
     # EXCEPTIONS LIST HERE IMPORT BELOW
     # maintain a two word phrase that do not indicate action but are combination of verbs
     two_gram_discard_phrases = []
@@ -80,8 +82,12 @@ def load_data_dict(filepath, max_no_email):
     # get the count of actionable to nonactionable
     # return only if current body actionable count is present
     # read the ENRON data into dict
-    data_filepath = filepath
-    email_dict = parse_email(data_filepath, max_no_email)
+    if os.path.isfile( filepath ):
+        data_filepath = filepath
+        email_dict = parse_email(data_filepath, max_no_email)
+    else:
+        email_dict = {1 : { "to" : "", "from" : "", "subject" : "", "cc" : "", "bcc" : "", "body" : { 0 : {
+            "sub_body" : filepath, "to" : "", "cc" : "", "subject" : "" }}}}
     final = { "actionable":0, "nonactionable":0 }
     # run for each email sample
     for key, email in email_dict.items():

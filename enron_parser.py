@@ -1,7 +1,7 @@
 import logging
-import sys
-import email
-import json
+# import sys
+# import email
+# import json
 import pandas as pd
 
 from email.parser import Parser
