@@ -223,7 +223,9 @@ def parse_email( pathname, orig=True ):
                         nested_body[ forward_count ] = mail_contents_nested
                     mail_contents[ "body" ] = nested_body
                 else:
-                    mail_contents[ "body" ] = { "0":message.get_payload() }
+                    mail_contents[ "body" ] = { "0" : { "sub_body" : message.get_payload(), "to" : "",
+                        "cc" : "", "subject" : "" }}
+
                 all_mail[ count ] = mail_contents
                 # print( json.dumps( all_mail, indent=2 ) )
             except Exception as ex:
@@ -236,4 +238,6 @@ def parse_email( pathname, orig=True ):
     return all_mail
 
 # run and test email parser
-# parse_email( sys.argv[ 1 ] )
+# print(parse_email( sys.argv[ 1 ] ))
+
+
