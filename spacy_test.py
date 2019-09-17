@@ -77,17 +77,17 @@ def load_data_dict():
 
     # run for each email sample
     for key, email in email_dict.items():
-        print(key, type(key), email["body"])
+        print(key, type(key), email["body"][0]["sub_body"])
         # adding one more loop to loop through emails
         body_list = []
-        for key, value in email_dict[key]["body"].items():
-            # run loop for only main body or if empty check next sub_body
+        for key, value in email["body"].items():
+            # run loop for only main body
             # for checking action in main body or can be forwarded with action to duplicate
             print("entering in key %s \t%s" % (key, type(value)))
-    #         if value["sub_body"]:
-    #             # copy the written code for single list to iterate with string here
-    #             # hence each string's sentences will be classified to actionable or non-actionable
-    #             body_list.append(value["sub_body"])
+            if value["sub_body"]:
+                # copy the written code for single list to iterate with string here
+                # hence each string's sentences will be classified to actionable or non-actionable
+                body_list.append(value["sub_body"])
     #
     #
     #

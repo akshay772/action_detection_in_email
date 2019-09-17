@@ -223,7 +223,7 @@ def parse_email( pathname, orig=True ):
                         nested_body[ forward_count ] = mail_contents_nested
                     mail_contents[ "body" ] = nested_body
                 else:
-                    mail_contents[ "body" ] = { "0" : { "sub_body" : message.get_payload(), "to" : "",
+                    mail_contents[ "body" ] = { 0 : { "sub_body" : message.get_payload(), "to" : "",
                         "cc" : "", "subject" : "" }}
 
                 all_mail[ count ] = mail_contents
