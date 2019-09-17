@@ -3,7 +3,6 @@ from spacy.lang.en import English
 # from nltk.tag import pos_tag
 # from nltk.tokenize import word_tokenize
 
-import unicodedata
 import os
 import spacy
 
@@ -16,7 +15,13 @@ def get_actionable_item(sent_tokenized_tagged):
     list_action_words = ["do", "list", "document", "send", "forward", "fix", "write", "open", "wait",
         "move", "visit", "make", "listen", "come", "spend", "submit", "build", "bring", "ask", "grab",
         "read", "give", "act", "visit", "think", "drop", "call", "schedule", "accept", "reply", "respond",
-        "create", "open", "close", "show", ]
+        "create", "open", "close", "show", "make", "execute", "perform", "cause", "exercise", "practice",
+        "answer", "serve", "manage", "arrange", "set", "name", "count", "get", "direct", "mail", "post",
+        "transport", "ship", "commit", "charge", "institutionalize", "institutionalise", "air",
+        "broadcast", "transmit", "repair", "restore", "secure", "determine", "define", "specify", "limit",
+        "prepare", "ready", "deposit", "situate", "locate", "compose", "indite", "publish", "save",
+        "spell", "spread", "unfold", "expect", "look", "await", "scan", "take", "study", "learn",
+        "register", "show", "record", "translate", "understand"]
     # EXCEPTIONS LIST HERE IMPORT BELOW
     # maintain a two word phrase that do not indicate action but are combination of verbs
     two_gram_discard_phrases = []
