@@ -7,7 +7,7 @@ import pandas as pd
 from email.parser import Parser
 from os import path, listdir
 
-def parse_email( pathname, orig=True ):
+def parse_email( pathname, max_no_email=15, orig=True ):
     all_mail = { }
     if path.isdir( pathname ):
         print( pathname )
@@ -24,7 +24,7 @@ def parse_email( pathname, orig=True ):
             try:
                 mail_contents = { }
                 # print( "present count is %s" % count )
-                if count == 15:
+                if count == max_no_email + 1:
                     break
                 message = Parser().parsestr( text )
                 mail_contents[ "to" ] = message[ "to" ]
