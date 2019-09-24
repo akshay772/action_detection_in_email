@@ -1,5 +1,6 @@
 from enron_parser import parse_email
 from spacy.lang.en import English
+# from nltk.corpus import wordnet
 # from nltk.tag import pos_tag
 # from nltk.tokenize import word_tokenize
 
@@ -22,6 +23,11 @@ def get_actionable_item(sent_tokenized_tagged):
         "prepare", "ready", "deposit", "situate", "locate", "compose", "indite", "publish", "save",
         "spell", "spread", "unfold", "expect", "look", "await", "scan", "take", "study", "learn",
         "register", "show", "record", "translate", "understand"]
+
+    # importing nltk wordnet and appending to list_action_words
+    # synonyms = [ ]
+    # tomorrow implement set instead of list and append wordnet synonyms
+    
     # EXCEPTIONS LIST HERE IMPORT BELOW
     # maintain a two word phrase that do not indicate action but are combination of verbs
     two_gram_discard_phrases = []
