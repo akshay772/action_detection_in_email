@@ -4,7 +4,7 @@ A heuristics-based linguistic model for detecting actionable items from the emai
  dataset mails are actionable or non-actionable.
  * If mail is found actionable, it grabs the action part of the mail.
 
-#####Requiremments : 
+##### Requiremments : 
 * To install dependencies run : `pip install -r requirements.txt`
     * Spacy is using  "en_core_web_sm" model so download it manually by running `python -m spacy download
      en_core_web_sm` in separate bash.
